@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pfdl.js.mapper.RateEntityMapper" >
+    
+    <resultMap type="com.pfdl.api.jdbc.RateEntity" id="RateEntityResult">
+        <result property="beginTime"    column="begin_time"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="price"    column="price"    />
+        <result property="status"    column="status"    />
+        <result property="fee"    column="fee"    />
+    </resultMap>
+    <select id="selectRateList"  resultMap="RateEntityResult">
+         SELECT STAB.BEGIN_TIME,STAB.END_TIME,STAB.PRICE STATUS ,PTAB.PRICE,FTAB.FEE
+         FROM BEE_TD_STRATEGYDETAIL STAB
+         left join BEE_TP_PRICE PTAB on STAB.PRICE = PTAB.ID
+         left join BEE_TP_FEE FTAB on STAB.FEE = FTAB.ID
+         order by to_number(STAB.BEGIN_TIME)
+    </select>
+
+</mapper>

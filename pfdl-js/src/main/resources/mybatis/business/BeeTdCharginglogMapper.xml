@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pfdl.js.mapper.BeeTdCharginglogMapper">
+    
+    <resultMap type="com.pfdl.api.jdbc.BeeTdCharginglog" id="BeeTdCharginglogResult">
+        <result property="id"    column="id"    />
+        <result property="stationNo"    column="station_no"    />
+        <result property="chargerNo"    column="charger_no"    />
+        <result property="branchNo"    column="branch_no"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="cusId"    column="cus_id"    />
+        <result property="cardNo"    column="card_no"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="startValue"    column="start_value"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="endValue"    column="end_value"    />
+        <result property="stopReason"    column="stop_reason"    />
+        <result property="batFixVol"    column="bat_fix_vol"    />
+        <result property="batTotalV"    column="bat_total_v"    />
+        <result property="totalVol"    column="total_vol"    />
+        <result property="chargerNum"    column="charger_num"    />
+        <result property="busJobNo"    column="bus_job_no"    />
+        <result property="busNo"    column="bus_no"    />
+        <result property="startSoc"    column="start_soc"    />
+        <result property="endSoc"    column="end_soc"    />
+        <result property="insTime"    column="ins_time"    />
+        <result property="batType"    column="bat_type"    />
+        <result property="chargerLength"    column="charger_length"    />
+        <result property="chargerValue"    column="charger_value"    />
+        <result property="startType"    column="start_type"    />
+        <result property="tradetype"    column="tradetype"    />
+        <result property="recordsource"    column="recordsource"    />
+        <result property="cartype"    column="cartype"    />
+        <result property="sharpPower"    column="sharp_power"    />
+        <result property="sharpCharge"    column="sharp_charge"    />
+        <result property="sharpPrice"    column="sharp_price"    />
+        <result property="sharpFeeprice"    column="sharp_feeprice"    />
+        <result property="sharpFee"    column="sharp_fee"    />
+        <result property="peakPower"    column="peak_power"    />
+        <result property="peakCharge"    column="peak_charge"    />
+        <result property="peakPrice"    column="peak_price"    />
+        <result property="peakFeeprice"    column="peak_feeprice"    />
+        <result property="peakFee"    column="peak_fee"    />
+        <result property="flatPower"    column="flat_power"    />
+        <result property="flatCharge"    column="flat_charge"    />
+        <result property="flatPrice"    column="flat_price"    />
+        <result property="flatFeeprice"    column="flat_feeprice"    />
+        <result property="flatFee"    column="flat_fee"    />
+        <result property="valleyPower"    column="valley_power"    />
+        <result property="valleyCharge"    column="valley_charge"    />
+        <result property="valleyPrice"    column="valley_price"    />
+        <result property="valleyFeeprice"    column="valley_feeprice"    />
+        <result property="valleyFee"    column="valley_fee"    />
+        <result property="totalprice"    column="totalprice"    />
+        <result property="runDistance"    column="run_distance"    />
+        <result property="extendVol"    column="extend_vol"    />
+        <result property="bst"    column="bst"    />
+        <result property="errorCode"    column="error_code"    />
+        <result property="elecPrice"    column="elec_price"    />
+        <result property="serviceFee"    column="service_fee"    />
+        <result property="sharpLength"    column="sharp_length"    />
+        <result property="peakLength"    column="peak_length"    />
+        <result property="flatLength"    column="flat_length"    />
+        <result property="valleyLength"    column="valley_length"    />
+        <result property="beginTime"    column="begin_time"    />
+    </resultMap>
+    <sql id="selectBeeTdCharginglogVo">
+        select id, station_no, charger_no, branch_no, session_id, cus_id, card_no, start_time, start_value, end_time, end_value, stop_reason, bat_fix_vol, bat_total_v, total_vol, charger_num, bus_job_no, bus_no, start_soc, end_soc, ins_time, bat_type, charger_length, charger_value, start_type, tradetype, recordsource, cartype, sharp_power, sharp_charge, sharp_price, sharp_feeprice, sharp_fee, peak_power, peak_charge, peak_price, peak_feeprice, peak_fee, flat_power, flat_charge, flat_price, flat_feeprice, flat_fee, valley_power, valley_charge, valley_price, valley_feeprice, valley_fee, totalprice, run_distance, extend_vol, bst, error_code, elec_price, service_fee, sharp_length, peak_length, flat_length, valley_length, begin_time from bee_td_charginglog
+    </sql>
+
+    <select id="selectBeeTdCharginglogList" parameterType="com.pfdl.api.jdbc.BeeTdCharginglog" resultMap="BeeTdCharginglogResult">
+        <include refid="selectBeeTdCharginglogVo"/>
+        <where>  
+            <if test="stationNo != null  and stationNo != ''"> and station_no = #{stationNo}</if>
+            <if test="chargerNo != null  and chargerNo != ''"> and charger_no = #{chargerNo}</if>
+            <if test="branchNo != null  and branchNo != ''"> and branch_no = #{branchNo}</if>
+            <if test="sessionId != null  and sessionId != ''"> and session_id = #{sessionId}</if>
+            <if test="cusId != null  and cusId != ''"> and cus_id = #{cusId}</if>
+            <if test="cardNo != null  and cardNo != ''"> and card_no = #{cardNo}</if>
+        </where>
+    </select>
+    
+    <select id="selectBeeTdCharginglogById" parameterType="String" resultMap="BeeTdCharginglogResult">
+        <include refid="selectBeeTdCharginglogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBeeTdCharginglog" parameterType="com.pfdl.api.jdbc.BeeTdCharginglog">
+        insert into bee_td_charginglog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">id,</if>
+            <if test="stationNo != null">station_no,</if>
+            <if test="chargerNo != null">charger_no,</if>
+            <if test="branchNo != null">branch_no,</if>
+            <if test="sessionId != null and sessionId != ''">session_id,</if>
+            <if test="cusId != null">cus_id,</if>
+            <if test="cardNo != null">card_no,</if>
+            <if test="startTime != null">start_time,</if>
+            <if test="startValue != null">start_value,</if>
+            <if test="endTime != null">end_time,</if>
+            <if test="endValue != null">end_value,</if>
+            <if test="stopReason != null">stop_reason,</if>
+            <if test="batFixVol != null">bat_fix_vol,</if>
+            <if test="batTotalV != null">bat_total_v,</if>
+            <if test="totalVol != null">total_vol,</if>
+            <if test="chargerNum != null">charger_num,</if>
+            <if test="busJobNo != null">bus_job_no,</if>
+            <if test="busNo != null">bus_no,</if>
+            <if test="startSoc != null">start_soc,</if>
+            <if test="endSoc != null">end_soc,</if>
+            <if test="insTime != null">ins_time,</if>
+            <if test="batType != null">bat_type,</if>
+            <if test="chargerLength != null">charger_length,</if>
+            <if test="chargerValue != null">charger_value,</if>
+            <if test="startType != null">start_type,</if>
+            <if test="tradetype != null">tradetype,</if>
+            <if test="recordsource != null">recordsource,</if>
+            <if test="cartype != null">cartype,</if>
+            <if test="sharpPower != null">sharp_power,</if>
+            <if test="sharpCharge != null">sharp_charge,</if>
+            <if test="sharpPrice != null">sharp_price,</if>
+            <if test="sharpFeeprice != null">sharp_feeprice,</if>
+            <if test="sharpFee != null">sharp_fee,</if>
+            <if test="peakPower != null">peak_power,</if>
+            <if test="peakCharge != null">peak_charge,</if>
+            <if test="peakPrice != null">peak_price,</if>
+            <if test="peakFeeprice != null">peak_feeprice,</if>
+            <if test="peakFee != null">peak_fee,</if>
+            <if test="flatPower != null">flat_power,</if>
+            <if test="flatCharge != null">flat_charge,</if>
+            <if test="flatPrice != null">flat_price,</if>
+            <if test="flatFeeprice != null">flat_feeprice,</if>
+            <if test="flatFee != null">flat_fee,</if>
+            <if test="valleyPower != null">valley_power,</if>
+            <if test="valleyCharge != null">valley_charge,</if>
+            <if test="valleyPrice != null">valley_price,</if>
+            <if test="valleyFeeprice != null">valley_feeprice,</if>
+            <if test="valleyFee != null">valley_fee,</if>
+            <if test="totalprice != null">totalprice,</if>
+            <if test="runDistance != null">run_distance,</if>
+            <if test="extendVol != null">extend_vol,</if>
+            <if test="bst != null">bst,</if>
+            <if test="errorCode != null">error_code,</if>
+            <if test="elecPrice != null">elec_price,</if>
+            <if test="serviceFee != null">service_fee,</if>
+            <if test="sharpLength != null">sharp_length,</if>
+            <if test="peakLength != null">peak_length,</if>
+            <if test="flatLength != null">flat_length,</if>
+            <if test="valleyLength != null">valley_length,</if>
+            <if test="beginTime != null">begin_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">#{id},</if>
+            <if test="stationNo != null">#{stationNo},</if>
+            <if test="chargerNo != null">#{chargerNo},</if>
+            <if test="branchNo != null">#{branchNo},</if>
+            <if test="sessionId != null and sessionId != ''">#{sessionId},</if>
+            <if test="cusId != null">#{cusId},</if>
+            <if test="cardNo != null">#{cardNo},</if>
+            <if test="startTime != null">#{startTime},</if>
+            <if test="startValue != null">#{startValue},</if>
+            <if test="endTime != null">#{endTime},</if>
+            <if test="endValue != null">#{endValue},</if>
+            <if test="stopReason != null">#{stopReason},</if>
+            <if test="batFixVol != null">#{batFixVol},</if>
+            <if test="batTotalV != null">#{batTotalV},</if>
+            <if test="totalVol != null">#{totalVol},</if>
+            <if test="chargerNum != null">#{chargerNum},</if>
+            <if test="busJobNo != null">#{busJobNo},</if>
+            <if test="busNo != null">#{busNo},</if>
+            <if test="startSoc != null">#{startSoc},</if>
+            <if test="endSoc != null">#{endSoc},</if>
+            <if test="insTime != null">#{insTime},</if>
+            <if test="batType != null">#{batType},</if>
+            <if test="chargerLength != null">#{chargerLength},</if>
+            <if test="chargerValue != null">#{chargerValue},</if>
+            <if test="startType != null">#{startType},</if>
+            <if test="tradetype != null">#{tradetype},</if>
+            <if test="recordsource != null">#{recordsource},</if>
+            <if test="cartype != null">#{cartype},</if>
+            <if test="sharpPower != null">#{sharpPower},</if>
+            <if test="sharpCharge != null">#{sharpCharge},</if>
+            <if test="sharpPrice != null">#{sharpPrice},</if>
+            <if test="sharpFeeprice != null">#{sharpFeeprice},</if>
+            <if test="sharpFee != null">#{sharpFee},</if>
+            <if test="peakPower != null">#{peakPower},</if>
+            <if test="peakCharge != null">#{peakCharge},</if>
+            <if test="peakPrice != null">#{peakPrice},</if>
+            <if test="peakFeeprice != null">#{peakFeeprice},</if>
+            <if test="peakFee != null">#{peakFee},</if>
+            <if test="flatPower != null">#{flatPower},</if>
+            <if test="flatCharge != null">#{flatCharge},</if>
+            <if test="flatPrice != null">#{flatPrice},</if>
+            <if test="flatFeeprice != null">#{flatFeeprice},</if>
+            <if test="flatFee != null">#{flatFee},</if>
+            <if test="valleyPower != null">#{valleyPower},</if>
+            <if test="valleyCharge != null">#{valleyCharge},</if>
+            <if test="valleyPrice != null">#{valleyPrice},</if>
+            <if test="valleyFeeprice != null">#{valleyFeeprice},</if>
+            <if test="valleyFee != null">#{valleyFee},</if>
+            <if test="totalprice != null">#{totalprice},</if>
+            <if test="runDistance != null">#{runDistance},</if>
+            <if test="extendVol != null">#{extendVol},</if>
+            <if test="bst != null">#{bst},</if>
+            <if test="errorCode != null">#{errorCode},</if>
+            <if test="elecPrice != null">#{elecPrice},</if>
+            <if test="serviceFee != null">#{serviceFee},</if>
+            <if test="sharpLength != null">#{sharpLength},</if>
+            <if test="peakLength != null">#{peakLength},</if>
+            <if test="flatLength != null">#{flatLength},</if>
+            <if test="valleyLength != null">#{valleyLength},</if>
+            <if test="beginTime != null">#{beginTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBeeTdCharginglog" parameterType="com.pfdl.api.jdbc.BeeTdCharginglog">
+        update bee_td_charginglog
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="stationNo != null">station_no = #{stationNo},</if>
+            <if test="chargerNo != null">charger_no = #{chargerNo},</if>
+            <if test="branchNo != null">branch_no = #{branchNo},</if>
+            <if test="sessionId != null and sessionId != ''">session_id = #{sessionId},</if>
+            <if test="cusId != null">cus_id = #{cusId},</if>
+            <if test="cardNo != null">card_no = #{cardNo},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="startValue != null">start_value = #{startValue},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="endValue != null">end_value = #{endValue},</if>
+            <if test="stopReason != null">stop_reason = #{stopReason},</if>
+            <if test="batFixVol != null">bat_fix_vol = #{batFixVol},</if>
+            <if test="batTotalV != null">bat_total_v = #{batTotalV},</if>
+            <if test="totalVol != null">total_vol = #{totalVol},</if>
+            <if test="chargerNum != null">charger_num = #{chargerNum},</if>
+            <if test="busJobNo != null">bus_job_no = #{busJobNo},</if>
+            <if test="busNo != null">bus_no = #{busNo},</if>
+            <if test="startSoc != null">start_soc = #{startSoc},</if>
+            <if test="endSoc != null">end_soc = #{endSoc},</if>
+            <if test="insTime != null">ins_time = #{insTime},</if>
+            <if test="batType != null">bat_type = #{batType},</if>
+            <if test="chargerLength != null">charger_length = #{chargerLength},</if>
+            <if test="chargerValue != null">charger_value = #{chargerValue},</if>
+            <if test="startType != null">start_type = #{startType},</if>
+            <if test="tradetype != null">tradetype = #{tradetype},</if>
+            <if test="recordsource != null">recordsource = #{recordsource},</if>
+            <if test="cartype != null">cartype = #{cartype},</if>
+            <if test="sharpPower != null">sharp_power = #{sharpPower},</if>
+            <if test="sharpCharge != null">sharp_charge = #{sharpCharge},</if>
+            <if test="sharpPrice != null">sharp_price = #{sharpPrice},</if>
+            <if test="sharpFeeprice != null">sharp_feeprice = #{sharpFeeprice},</if>
+            <if test="sharpFee != null">sharp_fee = #{sharpFee},</if>
+            <if test="peakPower != null">peak_power = #{peakPower},</if>
+            <if test="peakCharge != null">peak_charge = #{peakCharge},</if>
+            <if test="peakPrice != null">peak_price = #{peakPrice},</if>
+            <if test="peakFeeprice != null">peak_feeprice = #{peakFeeprice},</if>
+            <if test="peakFee != null">peak_fee = #{peakFee},</if>
+            <if test="flatPower != null">flat_power = #{flatPower},</if>
+            <if test="flatCharge != null">flat_charge = #{flatCharge},</if>
+            <if test="flatPrice != null">flat_price = #{flatPrice},</if>
+            <if test="flatFeeprice != null">flat_feeprice = #{flatFeeprice},</if>
+            <if test="flatFee != null">flat_fee = #{flatFee},</if>
+            <if test="valleyPower != null">valley_power = #{valleyPower},</if>
+            <if test="valleyCharge != null">valley_charge = #{valleyCharge},</if>
+            <if test="valleyPrice != null">valley_price = #{valleyPrice},</if>
+            <if test="valleyFeeprice != null">valley_feeprice = #{valleyFeeprice},</if>
+            <if test="valleyFee != null">valley_fee = #{valleyFee},</if>
+            <if test="totalprice != null">totalprice = #{totalprice},</if>
+            <if test="runDistance != null">run_distance = #{runDistance},</if>
+            <if test="extendVol != null">extend_vol = #{extendVol},</if>
+            <if test="bst != null">bst = #{bst},</if>
+            <if test="errorCode != null">error_code = #{errorCode},</if>
+            <if test="elecPrice != null">elec_price = #{elecPrice},</if>
+            <if test="serviceFee != null">service_fee = #{serviceFee},</if>
+            <if test="sharpLength != null">sharp_length = #{sharpLength},</if>
+            <if test="peakLength != null">peak_length = #{peakLength},</if>
+            <if test="flatLength != null">flat_length = #{flatLength},</if>
+            <if test="valleyLength != null">valley_length = #{valleyLength},</if>
+            <if test="beginTime != null">begin_time = #{beginTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBeeTdCharginglogById" parameterType="String">
+        delete from bee_td_charginglog where id = #{id}
+    </delete>
+
+    <delete id="deleteBeeTdCharginglogByIds" parameterType="String">
+        delete from bee_td_charginglog where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

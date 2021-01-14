@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pfdl.js.mapper.BeeChargerMapper">
+    
+    <resultMap type="com.pfdl.api.jdbc.BeeCharger" id="BeeChargerResult">
+        <result property="id"    column="id"    />
+        <result property="chargerNo"    column="charger_no"    />
+        <result property="chargerName"    column="charger_name"    />
+        <result property="stationNo"    column="station_no"    />
+        <result property="addtime"    column="addtime"    />
+        <result property="note"    column="note"    />
+        <result property="chargerType"    column="charger_type"    />
+        <result property="totalpower"    column="totalpower"    />
+        <result property="whitelistEnabled"    column="whitelist_enabled"    />
+        <result property="statue"    column="statue"    />
+        <result property="operationStatue"    column="operation_statue"    />
+        <result property="productSno"    column="product_sno"    />
+        <result property="ftyNo"    column="fty_no"    />
+    </resultMap>
+
+    <sql id="selectBeeChargerVo">
+        select id, charger_no, charger_name, station_no, addtime, note, charger_type, totalpower, whitelist_enabled, statue, operation_statue, product_sno, fty_no from bee_charger
+    </sql>
+
+    <select id="selectBeeChargerList" parameterType="com.pfdl.api.jdbc.BeeCharger" resultMap="BeeChargerResult">
+        <include refid="selectBeeChargerVo"/>
+        <where>  
+            <if test="chargerName != null  and chargerName != ''"> and charger_name like concat(concat('%', #{chargerName}), '%')</if>
+            <if test="stationNo != null  and stationNo != ''"> and station_no = #{stationNo}</if>
+            <if test="addtime != null "> and addtime = #{addtime}</if>
+            <if test="note != null  and note != ''"> and note = #{note}</if>
+            <if test="chargerType != null "> and charger_type = #{chargerType}</if>
+            <if test="totalpower != null "> and totalpower = #{totalpower}</if>
+            <if test="whitelistEnabled != null "> and whitelist_enabled = #{whitelistEnabled}</if>
+            <if test="statue != null "> and statue = #{statue}</if>
+            <if test="operationStatue != null "> and operation_statue = #{operationStatue}</if>
+            <if test="productSno != null  and productSno != ''"> and product_sno = #{productSno}</if>
+            <if test="ftyNo != null  and ftyNo != ''"> and fty_no = #{ftyNo}</if>
+        </where>
+    </select>
+    <select id="selectBeeChargerById" parameterType="String" resultMap="BeeChargerResult">
+        <include refid="selectBeeChargerVo"/>
+        where charger_no = #{chargerNo}
+    </select>
+    <select id="selectBeeChargerByProductSno" parameterType="String" resultMap="BeeChargerResult">
+        <include refid="selectBeeChargerVo"/>
+        where product_sno = #{productSno}
+    </select>
+        
+    <insert id="insertBeeCharger" parameterType="com.pfdl.api.jdbc.BeeCharger">
+        <selectKey keyProperty="chargerNo" resultType="long" order="BEFORE">
+            SELECT seq_bee_charger.NEXTVAL as chargerNo FROM DUAL
+        </selectKey>
+        insert into bee_charger
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">id,</if>
+            <if test="chargerNo != null">charger_no,</if>
+            <if test="chargerName != null">charger_name,</if>
+            <if test="stationNo != null">station_no,</if>
+            <if test="addtime != null">addtime,</if>
+            <if test="note != null">note,</if>
+            <if test="chargerType != null">charger_type,</if>
+            <if test="totalpower != null">totalpower,</if>
+            <if test="whitelistEnabled != null">whitelist_enabled,</if>
+            <if test="statue != null">statue,</if>
+            <if test="operationStatue != null">operation_statue,</if>
+            <if test="productSno != null">product_sno,</if>
+            <if test="ftyNo != null">fty_no,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">#{id},</if>
+            <if test="chargerNo != null">#{chargerNo},</if>
+            <if test="chargerName != null">#{chargerName},</if>
+            <if test="stationNo != null">#{stationNo},</if>
+            <if test="addtime != null">#{addtime},</if>
+            <if test="note != null">#{note},</if>
+            <if test="chargerType != null">#{chargerType},</if>
+            <if test="totalpower != null">#{totalpower},</if>
+            <if test="whitelistEnabled != null">#{whitelistEnabled},</if>
+            <if test="statue != null">#{statue},</if>
+            <if test="operationStatue != null">#{operationStatue},</if>
+            <if test="productSno != null">#{productSno},</if>
+            <if test="ftyNo != null">#{ftyNo},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBeeCharger" parameterType="com.pfdl.api.jdbc.BeeCharger">
+        update bee_charger
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null and id != ''">id = #{id},</if>
+            <if test="chargerName != null">charger_name = #{chargerName},</if>
+            <if test="stationNo != null">station_no = #{stationNo},</if>
+            <if test="addtime != null">addtime = #{addtime},</if>
+            <if test="note != null">note = #{note},</if>
+            <if test="chargerType != null">charger_type = #{chargerType},</if>
+            <if test="totalpower != null">totalpower = #{totalpower},</if>
+            <if test="whitelistEnabled != null">whitelist_enabled = #{whitelistEnabled},</if>
+            <if test="statue != null">statue = #{statue},</if>
+            <if test="operationStatue != null">operation_statue = #{operationStatue},</if>
+            <if test="productSno != null">product_sno = #{productSno},</if>
+            <if test="ftyNo != null">fty_no = #{ftyNo},</if>
+        </trim>
+        where charger_no = #{chargerNo}
+    </update>
+
+    <delete id="deleteBeeChargerById" parameterType="String">
+        delete from bee_charger where charger_no = #{chargerNo}
+    </delete>
+
+    <delete id="deleteBeeChargerByIds" parameterType="String">
+        delete from bee_charger where charger_no in 
+        <foreach item="chargerNo" collection="array" open="(" separator="," close=")">
+            #{chargerNo}
+        </foreach>
+    </delete>
+
+    <update id="updateOrderLogStatusByIdTag" parameterType="String">
+        UPDATE BEE_TD_ORDERLOG
+        SET STATUS = #{status}
+        WHERE SESSION_ID = #{sessionId}
+    </update>
+    <update id="updateOrderLogStatusByIdTagMap" parameterType="java.util.Map">
+        UPDATE BEE_TD_ORDERLOG
+        SET STATUS = #{status}
+        WHERE SESSION_ID = #{idTag}
+    </update>
+    <select id="selectCountNum"  resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM BEE_TD_ORDERLOG
+    </select>
+
+</mapper>
