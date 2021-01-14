@@ -2,6 +2,7 @@ package com.pfdl.js.service;
 
 
 import com.pfdl.api.jdbc.BeeTdCharginglog;
+import com.pfdl.api.jdbc.RateEntity;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public interface IBeeTdCharginglogService
      * @return 充电记录集合
      */
     public List<BeeTdCharginglog> selectBeeTdCharginglogList(BeeTdCharginglog beeTdCharginglog);
+    public List<RateEntity> selectRateList();
 
     /**
      * 新增充电记录

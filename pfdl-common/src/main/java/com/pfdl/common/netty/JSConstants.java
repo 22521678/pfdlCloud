@@ -1,8 +1,8 @@
 package com.pfdl.common.netty;
 
 public class JSConstants {
-//    public static final Integer SOCKET_SERVER_PROT = 10001; //20000   嘉盛桩
-    public static final Integer SOCKET_SERVER_PROT = 10002; //20001  公司内部桩
+    public static final Integer SOCKET_SERVER_PROT = 10001; //20000   嘉盛桩
+//    public static final Integer SOCKET_SERVER_PROT = 10002; //20001  公司内部桩
 //    public static final Integer SOCKET_SERVER_PROT = 10003; //20002  玖行
     public static final String SOCKET_SERVER_IP = "192.168.1.175";
     public static final Integer SOCKET_CLIENT_PROT = 9999;

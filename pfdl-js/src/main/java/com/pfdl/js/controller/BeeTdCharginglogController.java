@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.pfdl.api.controllerUtil.BaseController;
 import com.pfdl.api.jdbc.BeeTdCharginglog;
+import com.pfdl.api.jdbc.RateEntity;
 import com.pfdl.api.page.TableDataInfo;
 import com.pfdl.api.redis.ChargingLogVO;
 import com.pfdl.common.utils.AjaxResult;
@@ -38,8 +39,9 @@ public class BeeTdCharginglogController extends BaseController
     public TableDataInfo list(BeeTdCharginglog beeTdCharginglog)
     {
 //        startPage();
-        List<BeeTdCharginglog> list = beeTdCharginglogService.selectBeeTdCharginglogList(beeTdCharginglog);
-        return getDataTable(list);
+//        List<BeeTdCharginglog> list = beeTdCharginglogService.selectBeeTdCharginglogList(beeTdCharginglog);
+        List<RateEntity> rateEntities = beeTdCharginglogService.selectRateList();
+        return getDataTable(rateEntities);
     }
 
     /**

@@ -1,7 +1,9 @@
 package com.pfdl.js.service.impl;
 
 import com.pfdl.api.jdbc.BeeTdCharginglog;
+import com.pfdl.api.jdbc.RateEntity;
 import com.pfdl.js.mapper.BeeTdCharginglogMapper;
+import com.pfdl.js.mapper.RateEntityMapper;
 import com.pfdl.js.service.IBeeTdCharginglogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class BeeTdCharginglogServiceImpl implements IBeeTdCharginglogService
 {
     @Autowired
     private BeeTdCharginglogMapper beeTdCharginglogMapper;
+    @Autowired
+    private RateEntityMapper rateEntityMapper;
 
     /**
      * 查询充电记录
@@ -42,6 +46,11 @@ public class BeeTdCharginglogServiceImpl implements IBeeTdCharginglogService
     public List<BeeTdCharginglog> selectBeeTdCharginglogList(BeeTdCharginglog beeTdCharginglog)
     {
         return beeTdCharginglogMapper.selectBeeTdCharginglogList(beeTdCharginglog);
+    }
+
+    @Override
+    public List<RateEntity> selectRateList() {
+        return rateEntityMapper.selectRateList();
     }
 
     /**

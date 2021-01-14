@@ -26,7 +26,7 @@
 
     <select id="selectBeeChargerList" parameterType="com.pfdl.api.jdbc.BeeCharger" resultMap="BeeChargerResult">
         <include refid="selectBeeChargerVo"/>
-        <where>  
+        <where>
             <if test="chargerName != null  and chargerName != ''"> and charger_name like concat(concat('%', #{chargerName}), '%')</if>
             <if test="stationNo != null  and stationNo != ''"> and station_no = #{stationNo}</if>
             <if test="addtime != null "> and addtime = #{addtime}</if>
@@ -48,7 +48,7 @@
         <include refid="selectBeeChargerVo"/>
         where product_sno = #{productSno}
     </select>
-        
+
     <insert id="insertBeeCharger" parameterType="com.pfdl.api.jdbc.BeeCharger">
         <selectKey keyProperty="chargerNo" resultType="long" order="BEFORE">
             SELECT seq_bee_charger.NEXTVAL as chargerNo FROM DUAL

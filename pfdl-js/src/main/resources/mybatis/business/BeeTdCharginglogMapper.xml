@@ -72,7 +72,7 @@
 
     <select id="selectBeeTdCharginglogList" parameterType="com.pfdl.api.jdbc.BeeTdCharginglog" resultMap="BeeTdCharginglogResult">
         <include refid="selectBeeTdCharginglogVo"/>
-        <where>  
+        <where>
             <if test="stationNo != null  and stationNo != ''"> and station_no = #{stationNo}</if>
             <if test="chargerNo != null  and chargerNo != ''"> and charger_no = #{chargerNo}</if>
             <if test="branchNo != null  and branchNo != ''"> and branch_no = #{branchNo}</if>
@@ -81,12 +81,12 @@
             <if test="cardNo != null  and cardNo != ''"> and card_no = #{cardNo}</if>
         </where>
     </select>
-    
+
     <select id="selectBeeTdCharginglogById" parameterType="String" resultMap="BeeTdCharginglogResult">
         <include refid="selectBeeTdCharginglogVo"/>
         where id = #{id}
     </select>
-        
+
     <insert id="insertBeeTdCharginglog" parameterType="com.pfdl.api.jdbc.BeeTdCharginglog">
         insert into bee_td_charginglog
         <trim prefix="(" suffix=")" suffixOverrides=",">
